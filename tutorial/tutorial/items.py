@@ -11,5 +11,6 @@ import scrapy
 class DmozeItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-	title = scrapy.Field()
+	title1 = scrapy.Field()
+	info = scrapy.Field()
 
