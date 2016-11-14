@@ -5,7 +5,11 @@ __pycache__/
 
 # C extensions
 *.so
-
+*.json
+*.xml
+*.csv
+*.html
+*_list
 # Distribution / packaging
 .Python
 env/
