@@ -6,6 +6,8 @@ import sys
 from tutorial.items import DmozeItem
 #import UpdateStockNumbers
 import codecs
+import json
+
 
 class DmozSpider(scrapy.Spider):
 	name = "dmoz"
@@ -75,7 +77,7 @@ class DmozSpider(scrapy.Spider):
 					handle_nr += 1
 				#print('add info to items cur_nr %d handle_nr%d', cur_nr, handle_nr)
 				item = DmozeItem()
-				item['name'] = str(title).encode("UTF-8")  
+				item['name'] = title
 				item['number'] = info[0]
 				item['percent'] = info[2]
 				item['types'] = info[-1]
@@ -92,7 +94,10 @@ class DmozSpider(scrapy.Spider):
 		sys.setdefaultencoding('utf-8')
 		with codecs.open('/home/yy/data_sto/' + file_name, 'wb', 'utf-8') as f:
 			f.truncate()
-			f.write(str(items))
+			for i in items:
+				line = json.dumps(dict(i), ensure_ascii=False) + "\n"
+				f.write(line)
+		
 		
 		return items
 	
