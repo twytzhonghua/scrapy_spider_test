@@ -1,4 +1,3 @@
-
 import urllib
 
 class GetStockNumber:
