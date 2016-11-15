@@ -73,6 +73,6 @@ class UpdateStockNumber:
 					f.write(item)
 					f.write('\n')
 		
-updatestock =  UpdateStockNumber('testupdate')
-updatestock.update_stock_numbers()
-updatestock.download_sz_stock_number()
+#updatestock =  UpdateStockNumber('testupdate')
+#updatestock.update_stock_numbers()
+#updatestock.download_sz_stock_number()
