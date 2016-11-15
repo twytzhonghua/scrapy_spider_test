@@ -17,4 +17,6 @@ class DmozeItem(scrapy.Item):
 	types = scrapy.Field()
 	time = scrapy.Field()
 	nr = scrapy.Field()
+	stockType = scrapy.Field()
+	memType = scrapy.Field()
 

@@ -5,7 +5,7 @@ class GetStockNumber:
 		self.name = name
 	
 	def getHtml(self,url):
-		page = urllib.urlopen(url)
+		page = urllib.request.urlopen(url)
 		html = page.read()
 		return html
 

@@ -10,6 +10,7 @@ __pycache__/
 *.csv
 *.html
 *_list
+*.xls
 # Distribution / packaging
 .Python
 env/

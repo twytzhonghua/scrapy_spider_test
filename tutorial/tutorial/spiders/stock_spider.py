@@ -8,8 +8,8 @@ from tutorial.items import DmozeItem
 import codecs
 import json
 
-reload(sys)
-sys.setdefaultencoding("utf-8")
+#reload(sys)
+#sys.setdefaultencoding("utf-8")
 
 class StockSpider(scrapy.Spider):
 	name = "stock"
@@ -123,7 +123,8 @@ class StockSpider(scrapy.Spider):
 		if match:
 			file_name = match.group()
 			print("match file_name %s" % file_name)
-			with codecs.open('/home/yy/data_sto/' + file_name, 'wb', 'utf-8') as f:
+			file_name = 'C:/data_sto/' + file_name + '.json'
+			with codecs.open(file_name, 'w', 'utf-8') as f:
 				f.truncate()
 				for i in self.items:
 					line = json.dumps(dict(i), ensure_ascii=False) + "\n"

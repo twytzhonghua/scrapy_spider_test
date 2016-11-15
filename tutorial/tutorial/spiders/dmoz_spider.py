@@ -27,7 +27,7 @@ class DmozSpider(scrapy.Spider):
 		a = line.strip().lstrip().rstrip('\n')
 		start_urls.append('http://stockpage.10jqka.com.cn/' + a+ '/holder/')
 
-	print start_urls
+	print(start_urls)
 
 	def parse(self, response):
 		print('resopnse = %s' % response)
@@ -43,8 +43,8 @@ class DmozSpider(scrapy.Spider):
 		#for site in sites:
 		
 		dates = sel.xpath('//li/a[@class="fdates"]/text()').extract()
-		print  'date len%d', len(dates)
-		print dates
+		print('date len%d' % len(dates))
+		print(dates)
 		
 		handle_nr = 0
 		cur_nr = 0
