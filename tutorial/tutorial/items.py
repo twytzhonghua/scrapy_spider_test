@@ -12,7 +12,8 @@ class DmozeItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
 	name = scrapy.Field()
-	number  = scrapy.Field()
+	stock_number = scrapy.Field()
+	hold_number  = scrapy.Field()
 	percent = scrapy.Field()
 	types = scrapy.Field()
 	time = scrapy.Field()

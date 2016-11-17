@@ -74,7 +74,7 @@ class UpdateStockNumber:
 			for item in sz_items:
 				f.write(item.encode('utf-8'))
 				f.write('\n'.encode('utf-8'))
-		
-updatestock =  UpdateStockNumber('testupdate')
-updatestock.update_stock_numbers()
-updatestock.download_sz_stock_number()
+
+#updatestock =  UpdateStockNumber('testupdate')
+#updatestock.update_stock_numbers()
+#updatestock.download_sz_stock_number()
