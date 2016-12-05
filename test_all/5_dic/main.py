@@ -14,10 +14,9 @@ sys.setdefaultencoding('utf-8')
 
 def jian2fan(event):
 	line = transferStr.GetValue()
-	a = Converter('zh-hant').convert(line.decode('utf-8'))
-	a = line.encode('utf-8')
-	print(a)
-	outStr.SetValue(a)
+	line = Converter('zh-hant').convert(line.decode('utf-8'))
+	line = line.encode('utf-8')
+	outStr.SetValue(line)
 
 
 # fan 2 jian
