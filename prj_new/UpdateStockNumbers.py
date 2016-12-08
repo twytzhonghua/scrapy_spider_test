@@ -1,13 +1,12 @@
 #coding=utf-8
 # -*- coding:utf-8 -*- 
 from lxml import etree
-import urllib2
-import urllib
+#import urllib2
+import urllib.request
 import re
 import sys
-#import requests
 import xlrd
-import importlib
+#import importlib
 
 
 class UpdateStockNumber():
@@ -16,7 +15,7 @@ class UpdateStockNumber():
 		self.all_stock = []
 		 
 	def getHtml(self, url):
-		page = urllib2.urlopen(url)
+		page = urllib.request.urlopen(url)
 		html = page.read()
 		return html
 
@@ -24,7 +23,7 @@ class UpdateStockNumber():
 		html = self.getHtml(url)
 		pattern = re.compile(r'60[0-3]\d{3}|00[0,2]\d{3}|300\d{3}')
 		#matchs = pattern.search(html)
-		matchs = pattern.findall( html)
+		matchs = pattern.findall(str(html))
 		#print(matchs)
 		with open(file_name, 'wb') as f:
 			f.truncate()
@@ -40,25 +39,16 @@ class UpdateStockNumber():
 				
 		
 	def download_sz_stock_number(self):
-		#res = requests.get('http://www.szse.cn/szseWeb/ShowReport.szse?SHOWTYPE=xlsx&CATALOGID=1110&tab2PAGENUM=1&ENCODE=1&TABKEY=tab2')
-		#res.raise_for_status()
-		urllib.urlretrieve('http://www.szse.cn/szseWeb/ShowReport.szse?SHOWTYPE=xlsx&CATALOGID=1110&tab2PAGENUM=1&ENCODE=1&TABKEY=tab2', 'RomeoAndJuliet.xls')
-		#playFile = open('RomeoAndJuliet.xls', 'wb')
-		#for chunk in res.iter_content(100000):
-		#	playFile.write(chunk)
-		#playFile.close()
+		urllib.request.urlretrieve('http://www.szse.cn/szseWeb/ShowReport.szse?SHOWTYPE=xlsx&CATALOGID=1110&tab2PAGENUM=1&ENCODE=1&TABKEY=tab2', 'RomeoAndJuliet.xls')
 		
 		data = xlrd.open_workbook('RomeoAndJuliet.xls')
 		table = data.sheet_by_index(0)
 		col_value = table.col_values(0)
-		#print(col_value)
-		#lenth = IntVar()
 		sz_items=[]
 		pattern = re.compile(r'60[0-3]\d{3}|00[0,2]\d{3}|300\d{3}') 
 		for i in range(0, len(col_value)): 		
 			match = pattern.search(col_value[i]) 
 			if match:
-				#print match.group()
 				self.all_stock.append(match.group())
 				sz_items.append(match.group())
 
