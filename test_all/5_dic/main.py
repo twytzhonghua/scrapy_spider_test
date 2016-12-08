@@ -15,7 +15,7 @@ sys.setdefaultencoding('utf-8')
 def jian2fan(event):
 	line = transferStr.GetValue()
 	line = Converter('zh-hant').convert(line.decode('utf-8'))
-	line = line.encode('utf-8')
+	line = line.encode('gbk')
 	outStr.SetValue(line)
 
 
@@ -23,7 +23,7 @@ def jian2fan(event):
 def fan2jian(event):
 	line = transferStr.GetValue()
 	line = Converter('zh-hans').convert(line.decode('utf-8'))
-	line = line.encode('utf-8')
+	line = line.encode('gbk')
 	outStr.SetValue(line)
 
 
