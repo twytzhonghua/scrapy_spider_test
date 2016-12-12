@@ -52,7 +52,7 @@ def generateYiDianALLDataUrls(stock_number_list):
 
 		
 		
-def main(urls) :
+def startRequestURLSmain(urls) :
     global SHARE_Q
     threads = []
 	#向队列中放入任务
@@ -65,14 +65,3 @@ def main(urls) :
     for thread in threads :
         thread.join()
 
-if __name__ == '__main__':
-	#reload(sys)
-	importlib.reload(sys)
-	#sys.setdefaultencoding( "utf-8" )
-	stocks = UpdateStockNumbers.update_all_stock_number()	
-	#print(stocks)
-	urls = yiDianData.generateYiDianALLDataUrls(stocks)
-	#urls = generateYiDianALLDataUrls(stocks)
-	print('start')
-	main(urls)
-	print('over')

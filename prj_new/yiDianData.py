@@ -20,7 +20,7 @@ def start_yidian_url_requset(url):
 	burl = bytes(url,encoding="utf-8") 
 	deferred = client.getPage(burl)
 	deferred.addCallback(get_html_response_url_requset)   
-	reactor.run()
+	#reactor.run()
 	
 
 
