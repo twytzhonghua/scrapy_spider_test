@@ -1,4 +1,4 @@
-﻿# -*- coding:utf-8 -*-
+#-*- coding:utf-8 -*-
 
 import sys
 from langconv import *
@@ -6,30 +6,32 @@ from langconv import *
 import wx
 
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
-#line = '我爱你'
-
-
 def jian2fan(event):
 	line = transferStr.GetValue()
-	line = Converter('zh-hant').convert(line.decode('utf-8'))
-	line = line.encode('gbk')
+	line = Converter('zh-hant').convert(line)
+	#line = line.encode('gbk')
+	#print(line)
 	outStr.SetValue(line)
 
 
 # fan 2 jian
 def fan2jian(event):
 	line = transferStr.GetValue()
-	line = Converter('zh-hans').convert(line.decode('utf-8'))
-	line = line.encode('gbk')
+	line = Converter('zh-hans').convert(line)
+	#line = line.encode('gbk')
 	outStr.SetValue(line)
 
 
 	
 app = wx.App()
-win = wx.Frame(None, title='yy love tt', size = (500, 600))
+win = wx.Frame(None, title='yy love tt forever', size = (500, 600))
+#icon=wx.EmptyIcon()
+#icon.LoadFile("myicon.ico",wx.BITMAP_TYPE_ICO) 
+#win.SetIcon(icon)  
+#win.tbicon=wx.TaskBarIcon()  
+#win.tbicon.SetIcon(icon,"yy love tt forever")  
+
+
 bkg = wx.Panel(win)
 
 
