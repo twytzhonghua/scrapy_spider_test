@@ -50,6 +50,8 @@ from scrapy import *
 
 
 from stockCowTools.spiders.yiDianGuDong import YidiangudongSpider
+import update_stock
+
 
 import re
 import sys
@@ -57,6 +59,10 @@ import sys
 def start_yidian_gudong_spider(process):
     process.crawl(YidiangudongSpider)
 
+
+def init_stock_number():
+    stock_list = update_stock.update_all_stock_number()
+    return stock_list    
 
 if __name__ == "__main__":
     process = CrawlerProcess()
