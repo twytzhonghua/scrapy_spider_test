@@ -67,4 +67,23 @@ def update_all_stock_number():
 	
 	
 
+def generateYiDianGDUrls(stock_number_list):
+	urls = []
+	with open('date_cfg.cfg', 'r') as f:
+		dates = f.readlines()
+		print(dates)
+	
+	for date in dates:
+		for number in stock_number_list:
+			a_date = date.strip()
+			new_url = 'http://www.yidiancangwei.com/gudong/sdlt_' + number + '_' + a_date + '.html'
+			new_url = str(new_url)
+			urls.append(new_url)
+			
+	#print(urls)
+	with open('yidian_urls.txt', 'wb') as f:
+		for url in urls:
+			f.write(url.encode('utf-8'))
+			f.write('\n'.encode('utf-8'))
+	return urls
 

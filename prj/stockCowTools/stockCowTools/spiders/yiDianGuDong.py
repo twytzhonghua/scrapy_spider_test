@@ -7,7 +7,14 @@ import sys
 class YidiangudongSpider(scrapy.Spider):
 	name = "yiDianGuDong"
 	allowed_domains = ["yidiancangwei.com"]
-	start_urls = ['http://www.yidiancangwei.com/gudong/sdlt_300111_2015_06_30.html']
+	start_urls = [
+	#'http://www.yidiancangwei.com/gudong/sdlt_300111_2015_06_30.html'
+	]
+
+	with open('yidian_urls.txt', 'r') as f:
+		for line in f.readlines():
+			start_urls.append(line.strip())
+					
 
 	def parse(self, response):
 		pattern = re.compile(r'60[0-3]\d{3}|00[0,2]\d{3}|300\d{3}') 
@@ -47,14 +54,16 @@ class YidiangudongSpider(scrapy.Spider):
 				hold_num = other_info[3].strip()  
 				increase = other_info[4].strip()  
 				stock_type = other_info[5].strip()
-				print(gdname)				
-				print(percent)
-				print(hold_num)
-				print(increase)
-				print(stock_type)
-				print(date)
+				#print(gdname)				
+				#print(percent)
+				#print(hold_num)
+				#print(increase)
+				#print(stock_type)
+				#print(date)
 				#print(other_info)
-				print('-------------------------------')
+				#print('-------------------------------')
 				gdinfo = (gdname, date, stock_name, percent, hold_num, increase, stock_type)
 				all_info.append(gdinfo)
 		
+
+
