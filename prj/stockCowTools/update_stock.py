@@ -81,7 +81,7 @@ def generateYiDianGDUrls(stock_number_list):
 			urls.append(new_url)
 			
 	#print(urls)
-	with open('yidian_urls.txt', 'wb') as f:
+	with open('C:/scrapy/yidian_urls.txt', 'wb') as f:
 		for url in urls:
 			f.write(url.encode('utf-8'))
 			f.write('\n'.encode('utf-8'))

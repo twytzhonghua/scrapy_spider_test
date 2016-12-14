@@ -47,37 +47,17 @@ from scrapy.core.downloader.contextfactory import *
 
 from scrapy.logformatter import *
 from scrapy import *
-import wx
+
 
 from stockCowTools.spiders.yiDianGuDong import YidiangudongSpider
 
-
-
-
-def yiDianGDSpiderStart(event):
+def yiDianGDSpiderStart():
     process = CrawlerProcess()
     process.crawl(YidiangudongSpider)
     process.start()
 
-
-def createMainFrame():
-    app = wx.App()
-    win = wx.Frame(None, title='yy love tt forever', size = (500, 600))
-    
-    bkg = wx.Panel(win)
-
-    downloadButton 	= wx.Button(bkg, label = u'下载数据')
-    downloadButton.Bind(wx.EVT_BUTTON, yiDianGDSpiderStart)
-    hbox = wx.BoxSizer()
-    hbox.Add(downloadButton, proportion=0, flag=wx.LEFT, border=5)
-    win.Show()
-    app.MainLoop()
-
-
-
-
 if __name__ == "__main__":
-    createMainFrame()
+    yiDianGDSpiderStart()
     
 
     

@@ -11,7 +11,7 @@ class YidiangudongSpider(scrapy.Spider):
 	#'http://www.yidiancangwei.com/gudong/sdlt_300111_2015_06_30.html'
 	]
 
-	with open('yidian_urls.txt', 'r') as f:
+	with open('C:/scrapy/yidian_urls.txt', 'r') as f:
 		for line in f.readlines():
 			start_urls.append(line.strip())
 					
