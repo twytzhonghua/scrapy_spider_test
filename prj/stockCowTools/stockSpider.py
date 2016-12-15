@@ -50,6 +50,9 @@ from scrapy import *
 
 
 from stockCowTools.spiders.yiDianGuDong import YidiangudongSpider
+from stockCowTools.spiders.stockSql import *
+from stockCowTools.spiders.dataHtmlParse import *
+
 
 def yiDianGDSpiderStart():
     process = CrawlerProcess()
