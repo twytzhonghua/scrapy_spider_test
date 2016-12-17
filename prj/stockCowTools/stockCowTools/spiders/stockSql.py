@@ -11,7 +11,7 @@ def init_mysql_gudong_data_base():
     cur.execute('SET NAMES utf8;') 
     cur.execute('SET CHARACTER SET utf8;')
     cur.execute('SET character_set_connection=utf8;')
-    cur.execute('create table if not exists gudonginfo (gudong_name varchar(40), date varchar(20), stock_name varchar(20),stock_number varchar(20), percent varchar(20), hold_num varchar(20), increase varchar(20), stock_type varchar(20))ENGINE=InnoDB DEFAULT CHARSET=utf8')
+    cur.execute('create table if not exists gudonginfo (gudong_name varchar(80), date varchar(20), stock_name varchar(20),stock_number varchar(20), percent varchar(20), hold_num varchar(20), increase varchar(20), stock_type varchar(20))ENGINE=InnoDB DEFAULT CHARSET=utf8')
     db.commit()  
     db.close()
     
