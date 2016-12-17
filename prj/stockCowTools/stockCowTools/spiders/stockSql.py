@@ -3,7 +3,7 @@
 import MySQLdb
 
 def init_mysql_gudong_data_base():
-    db = MySQLdb.connect(host='localhost',user='root',passwd='123',port=3306, charset="utf8")
+    db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
     cur = db.cursor()  
     cur.execute('create database if not exists yidian_gudonginfo')
     db.select_db('yidian_gudonginfo')
@@ -16,7 +16,7 @@ def init_mysql_gudong_data_base():
     db.close()
     
 def yidian_store_gudong_db(all_info):
-    db = MySQLdb.connect(host='localhost',user='root',passwd='123',port=3306, charset="utf8")
+    db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
     db.select_db('yidian_gudonginfo')
     db.set_character_set('utf8')   
     cur = db.cursor()      
@@ -29,7 +29,7 @@ def yidian_query_gudong_name(name):
     t = name
     print('enter yidian_query_gudong_name')
     print(name)
-    db = MySQLdb.connect(host='localhost',user='root',passwd='123',port=3306, charset="utf8")
+    db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
     db.select_db('yidian_gudonginfo')
     cur = db.cursor()
     cur.execute("SELECT * FROM gudonginfo WHERE gudong_name='%s' " % t)

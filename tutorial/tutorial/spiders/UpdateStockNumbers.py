@@ -4,7 +4,7 @@ from lxml import etree
 import urllib
 import re
 import sys
-import requests
+#import requests
 import xlrd
 import importlib
 

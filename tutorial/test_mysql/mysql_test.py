@@ -11,19 +11,12 @@ db=MySQLdb.connect(host='localhost',user='root',passwd='123',port=3306)
 
 cur = db.cursor()  
 
-cur.execute('create database if not exists gudonginfo')
-db.select_db('gudonginfo')
+cur.execute('create database if not exists people_test')
+db.select_db('people_test')
 
-sqlselect = "SELECT count(*) FROM information_schema.tables WHERE table_schema = 'gudonginfo' AND table_name = 'people' "
 
-cur.execute(sqlselect)
-tablerows=cur.fetchall()
-print(tablerows)
-if not tablerows:
-	print("11111111111")
-	cur.execute('create table people(name varchar(20), age int, info varchar(20))')                  
-else:
-	pass
+cur.execute('create table if not exists people(name varchar(20), age int, info varchar(20))')                  
+
   
 cur.execute('insert into people values("Jee", 21, "F")')   # 执行SQL，添加记录  
 cur.execute('insert into people values("Leo", 21, "F")') 

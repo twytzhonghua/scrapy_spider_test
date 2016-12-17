@@ -8,7 +8,7 @@
 import scrapy
 
 
-class DownmovieItem(scrapy.Item):
+class DownloadmovieItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
