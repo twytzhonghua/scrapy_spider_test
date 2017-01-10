@@ -12,3 +12,7 @@ def parseYidianGDnumUrls():
 
 def parseYidianYiDong():
     pass
+
+
+def parseSpiderCfg():
+    pass

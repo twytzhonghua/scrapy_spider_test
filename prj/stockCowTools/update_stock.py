@@ -86,4 +86,20 @@ def generateYiDianGDUrls(stock_number_list):
 			f.write(url.encode('utf-8'))
 			f.write('\n'.encode('utf-8'))
 	return urls
+	
+def generateThsUrls(stock_number_list):
+	urls = []
+	
+	for line in open('sh_list'):
+		a = line.strip().lstrip().rstrip('\n')
+		urls.append('http://stockpage.10jqka.com.cn/' + a + '/holder/')
+	for line in open('sz_list'):
+		a = line.strip().lstrip().rstrip('\n')
+		urls.append('http://stockpage.10jqka.com.cn/' + a+ '/holder/')
+			
+	#print(urls)
+	with open('C:/scrapy/ths_urls.txt', 'wb') as f:
+		for url in urls:
+			f.write(url.encode('utf-8'))
+			f.write('\n'.encode('utf-8'))
 

@@ -49,18 +49,18 @@ from scrapy.logformatter import *
 from scrapy import *
 
 
-from stockCowTools.spiders.yiDianGuDong import YidiangudongSpider
+from stockCowTools.spiders.ThsGuDong2 import ThsgudongSpider
 from stockCowTools.spiders.stockSql import *
 from stockCowTools.spiders.dataHtmlParse import *
 
 
-def yiDianGDSpiderStart():
+def LtGDSpiderStart():
     process = CrawlerProcess()
-    process.crawl(YidiangudongSpider)
+    process.crawl(ThsgudongSpider)
     process.start()
 
 if __name__ == "__main__":
-    yiDianGDSpiderStart()
+    LtGDSpiderStart()
     
 
     

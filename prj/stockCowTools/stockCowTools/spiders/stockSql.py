@@ -5,34 +5,33 @@ import MySQLdb
 def init_mysql_gudong_data_base():
     db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
     cur = db.cursor()  
-    cur.execute('create database if not exists yidian_gudonginfo')
-    db.select_db('yidian_gudonginfo')
+    cur.execute('create database if not exists lt_gudonginfo')
+    db.select_db('lt_gudonginfo')
     db.set_character_set('utf8')
     cur.execute('SET NAMES utf8;') 
     cur.execute('SET CHARACTER SET utf8;')
     cur.execute('SET character_set_connection=utf8;')
-    cur.execute('create table if not exists gudonginfo (gudong_name varchar(80), date varchar(20), stock_name varchar(20),stock_number varchar(20), percent varchar(20), hold_num varchar(20), increase varchar(20), stock_type varchar(20))ENGINE=InnoDB DEFAULT CHARSET=utf8')
-    db.commit()  
+    cur.execute('create table if not exists LTgudonginfo (stock_number varchar(20), stock_name varchar(20), gudong_name varchar(100),  hold_num varchar(20), percent varchar(20), date varchar(20), stock_type varchar(20))ENGINE=InnoDB DEFAULT CHARSET=utf8')
     db.close()
     
-def yidian_store_gudong_db(all_info):
+def store_lt_gudong_db(all_info):
     db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
-    db.select_db('yidian_gudonginfo')
+    db.select_db('lt_gudonginfo')
     db.set_character_set('utf8')   
     cur = db.cursor()      
-    cur.executemany("insert into gudonginfo values (%s,%s,%s,%s,%s,%s,%s,%s)", all_info)
+    cur.executemany("insert into LTgudonginfo values (%s,%s,%s,%s,%s,%s,%s)", all_info)
     db.commit()
     cur.close()
     db.close()
 
-def yidian_query_gudong_name(name):
+def query_lt_gudong_name(name):
     t = name
-    print('enter yidian_query_gudong_name')
-    print(name)
+    print('enter query_lt_gudong_name = ', name)
+    #print(name)
     db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
-    db.select_db('yidian_gudonginfo')
+    db.select_db('lt_gudonginfo')
     cur = db.cursor()
-    cur.execute("SELECT * FROM gudonginfo WHERE gudong_name='%s' " % t)
+    cur.execute("SELECT * FROM LTgudonginfo WHERE gudong_name='%s' " % t)
     #db.commit()  
     
     all_ret = cur.fetchall()
