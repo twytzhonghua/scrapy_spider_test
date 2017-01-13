@@ -1,15 +1,10 @@
-a = 52
-times = 5
-per_time = a /times
+#! /usr/bin/env python
+#coding=utf-8
+import tushare as ts
+ 
+#a = ts.get_stock_basics()
 
-for i in range (0, times):
-	begin =  i * per_time
-	stop =  (i + 1)* per_time - 1
-	print("begint = %d   " %  begin )
-	print('stop = %d \n' % stop )
-	
-begin = (i + 1)* per_time
-stop = a
-
-print("begint = %d   " %  begin )
-print('stop = %d \n' % stop )
+a = ts.get_industry_classified()
+print(type(a))
+print(a)
+ 

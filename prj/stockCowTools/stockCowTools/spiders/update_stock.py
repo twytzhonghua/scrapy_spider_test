@@ -4,8 +4,9 @@ import urllib.request
 import re
 import sys
 import xlrd
-#import importlib
-
+import csv
+import tushare as ts
+# import pandas as pd
 
 class UpdateStockNumber():
 	def __init__(self, name):
@@ -102,4 +103,62 @@ def generateThsUrls(stock_number_list):
 		for url in urls:
 			f.write(url.encode('utf-8'))
 			f.write('\n'.encode('utf-8'))
+			
 
+
+def get_and_store_all_stock_list():
+    a = ts.get_stock_basics()
+    a.to_csv('c:/scrapy/all_stock.csv', encoding='gbk', index=True)
+
+
+def generate_stock_dic():
+    i = 0
+    stock_dic = {}
+    csv_reader = csv.reader(open('c:/scrapy/all_stock.csv', encoding='gbk'))
+    for row in csv_reader:
+        if(i == 0) :
+            pass
+        else:
+            if(len(row[0]) == 1):
+                row[0] = '00000' + row[0]
+            elif (len(row[0]) == 2):
+                row[0] = '0000' + row[0]
+            elif (len(row[0]) == 3):
+                row[0] = '000' + row[0]
+            elif (len(row[0]) == 4):
+                row[0] = '00' + row[0]
+            elif (len(row[0]) == 5):
+                row[0] = '0' + row[0]
+            else:
+                pass
+            
+            stock_dic[row[0]] = row[1] 
+
+        i += 1
+    
+    return stock_dic
+
+
+# 'http://webf10.gw.com.cn/SH/B10/SH600767_B10.html#'
+def generateDzhUrls():
+	urls = []
+	
+	# for line in open('sh_list'):
+		# a = line.strip().lstrip().rstrip('\n')
+		# urls.append('http://webf10.gw.com.cn/SH/B10/SH' + a + '_B10.html')
+	# for line in open('sz_list'):
+		# a = line.strip().lstrip().rstrip('\n')
+		# urls.append('http://webf10.gw.com.cn/SZ/B10/SZ' + a+ '_B10.html')
+	dict = generate_stock_dic()
+	for key in dict.keys():
+		if int(key) < 600000 :
+			urls.append('http://webf10.gw.com.cn/SZ/B10/SZ' + key+ '_B10.html')
+		else:
+			urls.append('http://webf10.gw.com.cn/SH/B10/SH' + key + '_B10.html')
+			
+	#print(urls)
+	with open('C:/scrapy/dzh_urls.txt', 'wb') as f:
+		for url in urls:
+			f.write(url.encode('utf-8'))
+			f.write('\n'.encode('utf-8'))
+			

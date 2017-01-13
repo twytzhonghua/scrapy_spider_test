@@ -2,17 +2,19 @@
 
 import wx
 import os
-import update_stock
+
 from stockCowTools.spiders.stockSql import * 
+from stockCowTools.spiders.update_stock import * 
 
 class SmartToolMainFrame( wx.Frame ):
 
 
     def stock_list_update(self,event):
         print('receive update button')
-        stock_list = update_stock.update_all_stock_number()
-        update_stock.generateThsUrls(stock_list)
-
+        get_and_store_all_stock_list()
+        # update_stock.generateThsUrls(stock_list)
+        generateDzhUrls()
+		
     def spider_start(self, event):
         os.system('C:/scrapy/stockSpider.exe')
 

@@ -52,11 +52,12 @@ from scrapy import *
 from stockCowTools.spiders.ThsGuDong2 import ThsgudongSpider
 from stockCowTools.spiders.stockSql import *
 from stockCowTools.spiders.dataHtmlParse import *
-
+from stockCowTools.spiders.DzhGuDong import DzhgudongSpider
+from stockCowTools.spiders.update_stock import * 
 
 def LtGDSpiderStart():
     process = CrawlerProcess()
-    process.crawl(ThsgudongSpider)
+    process.crawl(DzhgudongSpider)
     process.start()
 
 if __name__ == "__main__":
