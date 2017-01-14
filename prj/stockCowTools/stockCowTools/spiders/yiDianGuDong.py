@@ -3,8 +3,8 @@ import scrapy
 import re
 import sys
 #import dataHtmlParse
-from stockCowTools.spiders.stockSql import *
-from stockCowTools.spiders.dataHtmlParse import *
+from stockSMT.stockSql import *
+from stockSMT.dataHtmlParse import *
 
 
 class YidiangudongSpider(scrapy.Spider):
@@ -14,7 +14,7 @@ class YidiangudongSpider(scrapy.Spider):
 	#'http://www.yidiancangwei.com/gudong/sdlt_300111_2015_06_30.html'
 	]
 
-	with open('C:/scrapy/yidian_urls.txt', 'r') as f:
+	with open('C:/scrapy/crawls_urls.txt', 'r') as f:
 		for line in f.readlines():
 			start_urls.append(line.strip())
 					
@@ -25,7 +25,7 @@ class YidiangudongSpider(scrapy.Spider):
 		if match:
 			self.stock_num = match.group()
 			#print("stock_num %s" % str(self.stock_num))
-			yiDianCheckLTGD(response)
+			# yiDianCheckLTGD(response)
 		
 	
 

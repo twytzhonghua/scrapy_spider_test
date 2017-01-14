@@ -3,9 +3,9 @@ import scrapy
 import re
 import sys
 import urllib.request
-from stockCowTools.spiders.stockSql import *
-from stockCowTools.spiders.dataHtmlParse import *
-from stockCowTools.spiders.update_stock import * 
+from stockSMT.stockSql import *
+# from stockSMT.dataHtmlParse import *
+from stockSMT.update_stock import * 
 
 class DzhgudongSpider(scrapy.Spider):
 	name = "dzh"
@@ -14,7 +14,7 @@ class DzhgudongSpider(scrapy.Spider):
 		# 'http://webf10.gw.com.cn/SH/B10/SH600767_B10.html#'
 	]
 
-	with open('C:/scrapy/dzh_urls.txt', 'r') as f:
+	with open('C:/scrapy/crawls_urls.txt', 'r') as f:
 		for line in f.readlines():
 			start_urls.append(line.strip())
 	

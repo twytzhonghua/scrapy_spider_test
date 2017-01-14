@@ -3,6 +3,7 @@
 import MySQLdb
 
 def init_mysql_gudong_data_base():
+    print('begint init_mysql_gudong_data_base')
     db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
     cur = db.cursor()  
     cur.execute('create database if not exists ltgudongdb')
@@ -12,6 +13,7 @@ def init_mysql_gudong_data_base():
     cur.execute('SET CHARACTER SET utf8;')
     cur.execute('SET character_set_connection=utf8;')
     cur.execute('create table if not exists LTgudonginfo (stock_number varchar(20), cname varchar(20),gudong_name varchar(100), hold_num varchar(20), percent varchar(20), ichange varchar(20), date varchar(20), stock_type varchar(20))ENGINE=InnoDB DEFAULT CHARSET=utf8')
+    cur.execute('create table if not exists LTgudongNumber (stock_number varchar(20), cname varchar(20),number varchar(20), ichange_percent varchar(20), date varchar(20))ENGINE=InnoDB DEFAULT CHARSET=utf8')
     db.close()
     
 	
@@ -26,7 +28,16 @@ def store_lt_gudong_db(all_info):
     cur.close()
     db.close()
 
-	
+def store_lt_gudong_num_db(all_info):
+    db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
+    db.select_db('ltgudongdb')
+    db.set_character_set('utf8')   
+    cur = db.cursor()      
+    cur.executemany("insert into LTgudongNumber values (%s,%s,%s,%s,%s)", all_info)
+    db.commit()
+    cur.close()
+    db.close()
+
 	
 def query_lt_gudong_name(name):
     t = name

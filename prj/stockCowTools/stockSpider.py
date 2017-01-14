@@ -57,7 +57,8 @@ from stockCowTools.spiders.update_stock import *
 
 def LtGDSpiderStart():
     process = CrawlerProcess()
-    process.crawl(DzhgudongSpider)
+    # process.crawl(DzhgudongSpider)
+	process.crawl(ThsgudongSpider)
     process.start()
 
 if __name__ == "__main__":

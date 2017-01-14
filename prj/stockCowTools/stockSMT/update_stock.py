@@ -6,7 +6,7 @@ import sys
 import xlrd
 import csv
 import tushare as ts
-# import pandas as pd
+
 
 class UpdateStockNumber():
 	def __init__(self, name):
@@ -88,27 +88,13 @@ def generateYiDianGDUrls(stock_number_list):
 			f.write('\n'.encode('utf-8'))
 	return urls
 	
-def generateThsUrls(stock_number_list):
-	urls = []
-	
-	for line in open('sh_list'):
-		a = line.strip().lstrip().rstrip('\n')
-		urls.append('http://stockpage.10jqka.com.cn/' + a + '/holder/')
-	for line in open('sz_list'):
-		a = line.strip().lstrip().rstrip('\n')
-		urls.append('http://stockpage.10jqka.com.cn/' + a+ '/holder/')
-			
-	#print(urls)
-	with open('C:/scrapy/ths_urls.txt', 'wb') as f:
-		for url in urls:
-			f.write(url.encode('utf-8'))
-			f.write('\n'.encode('utf-8'))
-			
+
 
 
 def get_and_store_all_stock_list():
     a = ts.get_stock_basics()
     a.to_csv('c:/scrapy/all_stock.csv', encoding='gbk', index=True)
+    print('generate c:/scrapy/all_stock.csv over')
 
 
 def generate_stock_dic():
@@ -132,9 +118,11 @@ def generate_stock_dic():
             else:
                 pass
             
-            stock_dic[row[0]] = row[1] 
+        stock_dic[row[0]] = row[1] 
 
         i += 1
+	
+    # sorted(stock_dic.keys)
     
     return stock_dic
 
@@ -142,22 +130,30 @@ def generate_stock_dic():
 # 'http://webf10.gw.com.cn/SH/B10/SH600767_B10.html#'
 def generateDzhUrls():
 	urls = []
-	
-	# for line in open('sh_list'):
-		# a = line.strip().lstrip().rstrip('\n')
-		# urls.append('http://webf10.gw.com.cn/SH/B10/SH' + a + '_B10.html')
-	# for line in open('sz_list'):
-		# a = line.strip().lstrip().rstrip('\n')
-		# urls.append('http://webf10.gw.com.cn/SZ/B10/SZ' + a+ '_B10.html')
+	print('begin generateDzhUrls')
 	dict = generate_stock_dic()
 	for key in dict.keys():
-		if int(key) < 600000 :
-			urls.append('http://webf10.gw.com.cn/SZ/B10/SZ' + key+ '_B10.html')
-		else:
-			urls.append('http://webf10.gw.com.cn/SH/B10/SH' + key + '_B10.html')
+		if key.isdigit():
+			if int(key) < 600000 :
+				urls.append('http://webf10.gw.com.cn/SZ/B10/SZ' + key+ '_B10.html')
+			else:
+				urls.append('http://webf10.gw.com.cn/SH/B10/SH' + key + '_B10.html')
 			
 	#print(urls)
-	with open('C:/scrapy/dzh_urls.txt', 'wb') as f:
+	with open('C:/scrapy/crawls_urls.txt', 'wb') as f:
+		for url in urls:
+			f.write(url.encode('utf-8'))
+			f.write('\n'.encode('utf-8'))
+			
+def generateThsUrls():
+	urls = []
+	
+	dict = generate_stock_dic()			
+	for key in dict.keys():
+		urls.append('http://stockpage.10jqka.com.cn/' + key+ '/holder/')
+
+	#print(urls)
+	with open('C:/scrapy/crawls_urls.txt', 'wb') as f:
 		for url in urls:
 			f.write(url.encode('utf-8'))
 			f.write('\n'.encode('utf-8'))
