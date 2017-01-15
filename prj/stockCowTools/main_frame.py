@@ -135,8 +135,8 @@ class SmartToolMainFrame( wx.Frame ):
         self.downloadButton 	= wx.Button(bkg, label = u'下载数据')
         self.downloadButton.Bind(wx.EVT_BUTTON, self.spider_start)
         
-        self.updateStockButton 	= wx.Button(bkg, label = '更新列表')
-        self.updateStockButton.Bind(wx.EVT_BUTTON, self.stock_list_update)
+        # self.updateStockButton 	= wx.Button(bkg, label = '更新列表')
+        # self.updateStockButton.Bind(wx.EVT_BUTTON, self.stock_list_update)
         
         self.queryButton 	= wx.Button(bkg, label = '查询')
         self.queryButton.Bind(wx.EVT_BUTTON, self.query_gudong_name)
@@ -147,7 +147,7 @@ class SmartToolMainFrame( wx.Frame ):
         
         hbox = wx.BoxSizer()
         hbox.Add(self.downloadButton, proportion=0, flag=wx.LEFT, border=5)
-        hbox.Add(self.updateStockButton, proportion=0, flag=wx.LEFT, border=5)
+        # hbox.Add(self.updateStockButton, proportion=0, flag=wx.LEFT, border=5)
         
         hbox2 = wx.BoxSizer()
         hbox2.Add(self.gudongNameText, proportion=1, flag=wx.EXPAND)

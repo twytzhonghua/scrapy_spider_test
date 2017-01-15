@@ -11,12 +11,13 @@ class ThsgudongSpider(scrapy.Spider):
 	name = "ths"
 	allowed_domains = ['10jqka.com.cn']
 	start_urls = [
-		'http://stockpage.10jqka.com.cn/300575/holder/'
+		# 'http://stockpage.10jqka.com.cn/300575/holder/'
+		#'http://stockpage.10jqka.com.cn/300371/holder/'
 	]
 
-	# with open('C:/scrapy/crawls_urls.txt', 'r') as f:
-		# for line in f.readlines():
-			# start_urls.append(line.strip())
+	with open('C:/scrapy/crawls_urls.txt', 'r') as f:
+		for line in f.readlines():
+			start_urls.append(line.strip())
 		
 	#print(start_urls)
 	
@@ -27,7 +28,7 @@ class ThsgudongSpider(scrapy.Spider):
 		sel = scrapy.selector.Selector(response)
 		# <div class="td_w">4.73</div>
 		data_list = sel.xpath('//div[@class="td_w"]/text()').extract()
-		print('len = ', len(data_list))
+		# print('len = ', len(data_list))
 		length =  len(data_list)
 		half = (length//2) -1
 		date_list = data_list[0:half]
@@ -45,7 +46,7 @@ class ThsgudongSpider(scrapy.Spider):
 			gd_num_info = (self.stock_num, self.cName, number, ichange_percent, date)
 			# print(gd_num_info)
 			all_info.append(gd_num_info)
-		print(all_info)
+		# print(all_info)
 		stockSql.store_lt_gudong_num_db(all_info)
 
 	#和上期比较持股数量变化
@@ -80,19 +81,27 @@ class ThsgudongSpider(scrapy.Spider):
 		one_jidu_info_divs = LTGD_body.xpath('.//table[@class="m_table m_hl ggintro"]')
 		# print("gudong info parts %d" % len(one_jidu_info_divs))
 		for one_jidu_info in one_jidu_info_divs:
-			one_gudong_info_divs = one_jidu_info.xpath('.//tr')
-			#print("gudong info member %d" % len(one_gudong_info_divs))
+			one_gudong_info_divs = one_jidu_info.xpath('.//tbody/tr')
+			# print("gudong info member %d" % len(one_gudong_info_divs))
+			# print(one_gudong_info_divs)
 			for one_gudong_info in one_gudong_info_divs:
 				name = one_gudong_info.xpath('.//th[@class="tl holder_th"]/a/text()').extract()
 				info = one_gudong_info.xpath('.//td/text()').extract()
+				# print(info)
 				info_list = one_gudong_info.xpath('.//td')
+				# print('info_list = ', info_list)
 				info_list_text = one_gudong_info.xpath('.//td').extract()
+				# print('name = ', name)
+				# print('info_list_text = ', info_list_text)
 				if name and info_list_text and info_list:
 					stock_number = self.stock_num
 					Cname = self.cName
 					gdname = name[0]
 					hold_num = info_list[0].xpath('.//text()').extract()[0]
-					percent = info_list[2].xpath('.//text()').extract()[0]
+					# percent = info_list[2].xpath('.//text()').extract()
+					percent = info[2]
+					if percent.strip() == '':
+						percent = '-'
 					ichange = self.checkIchange(info_list_text[1])
 					date = date_time[cur_seq]
 					stock_type = info_list[4].xpath('.//text()').extract()[0]					
