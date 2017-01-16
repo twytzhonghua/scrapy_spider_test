@@ -157,4 +157,18 @@ def generateThsUrls():
 		for url in urls:
 			f.write(url.encode('utf-8'))
 			f.write('\n'.encode('utf-8'))
-			
+
+# 新浪网站
+def generateXlUrls():
+	urls = []
+	
+	dict = generate_stock_dic()			
+	for key in dict.keys():
+	# http://vip.stock.finance.sina.com.cn/corp/go.php/vCI_CirculateStockHolder/stockid/603009.phtml#2010-09-30
+		urls.append('http://vip.stock.finance.sina.com.cn/corp/go.php/vCI_CirculateStockHolder/stockid/' + key+ '.phtml#2010-09-30')
+
+	#print(urls)
+	with open('C:/scrapy/crawls_urls.txt', 'wb') as f:
+		for url in urls:
+			f.write(url.encode('utf-8'))
+			f.write('\n'.encode('utf-8'))			

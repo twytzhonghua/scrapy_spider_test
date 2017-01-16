@@ -58,12 +58,13 @@ import stockSMT.paraInit as stparaInit
 
 from stockCowTools.spiders.ThsGuDong2 import ThsgudongSpider
 from stockCowTools.spiders.DzhGuDong import DzhgudongSpider
-
+from stockCowTools.spiders.XinlangGuDong import XlgudongSpider
 
 def LtGDSpiderStart():
     process = CrawlerProcess()
     # process.crawl(DzhgudongSpider)
-    process.crawl(ThsgudongSpider)
+    # process.crawl(ThsgudongSpider)
+    process.crawl(XlgudongSpider)
     process.start()
 
 class SmartToolMainFrame( wx.Frame ):
