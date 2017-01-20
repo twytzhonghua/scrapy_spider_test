@@ -17,8 +17,8 @@ class ExampleSpider(scrapy.Spider):
 	name = "example"
 	allowed_domains = ["www.99ww9.com"]
 	start_urls = [ ]
-	a1=40000
-	b1=45000
+	a1=50000
+	b1=55000
 	for i in range(a1, b1):
 		start_urls.append('http://www.99ww9.com/embed/' + str(i))
 	#print(start_urls)

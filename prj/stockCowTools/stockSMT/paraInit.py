@@ -6,12 +6,12 @@ class StockSMTInit():
 	print('this is stockSMT StockSMTInit class')
 	update_stock.get_and_store_all_stock_list()
 	
-	# update_stock.generateDzhUrls()
-	# update_stock.generateThsUrls()
+	update_stock.generateDzhUrls()
+	update_stock.generateThsUrls()
 	update_stock.generateXlUrls()
 	
 	# stockSql.init_mysql_gudong_data_base()
-	stockSql.init_mysql_old_gudong_data_base()
+	#stockSql.init_mysql_old_gudong_data_base()
 	
 	def __init__(self):
 		print('this is stockSMT package')

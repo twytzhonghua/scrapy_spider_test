@@ -1,9 +1,5 @@
+#! /usr/bin/env python
 #coding=utf-8
-
-
-import os, sys
-import xml.etree.ElementTree as ET 
-
 import xml.dom.minidom as Dom  
 
 
@@ -20,7 +16,7 @@ def create_yidian_cfg(doc):
 def create_ths_cfg(doc):
     cfg_node = doc.createElement("tonghuashun")
     enable_node = doc.createElement("enable")  
-    enable_value = doc.createTextNode("Enable")  
+    enable_value = doc.createTextNode("False")  
     enable_node.appendChild(enable_value)
 
     cfg_node.appendChild(enable_node)
@@ -50,7 +46,6 @@ def create_xinlang_cfg(doc):
 
 
 def create_stock_smt_cfg():
-    print('create_stock_smt_cfg')
     doc = Dom.Document()  
     root_node = doc.createElement("stock_crawl_cfg")  
     root_node.setAttribute("developer", "zhonghua")  
@@ -65,43 +60,10 @@ def create_stock_smt_cfg():
     root_node.appendChild(dzhNode) 
     root_node.appendChild(xinlangNode) 
     
-    with open("C:/scrapy/stockSmtCfg.xml", "w")  as f:
+    with open("stockSmtCfg.xml", "w")  as f:
         str = doc.toprettyxml(indent = "\t", newl = "\n", encoding = "utf-8")
         f.write(bytes.decode(str))
-
-
-def get_stock_smt_cfg_en_name():
-#    en_list = []
-
-    cfg_exist = os.path.isfile("c:/scrapy/stockSmtCfg.xml")
-    print('c:/scrapy/stockSmtCfg.xml is', cfg_exist)
-    if cfg_exist:
-        print('c:/scrapy/stockSmtCfg.xml is already exist')
-    else:
-       create_stock_smt_cfg()
-
-    tree = ET.parse("c:/scrapy/stockSmtCfg.xml")     #打开xml文档   
-    root = tree.getroot()         #获得root节点  '
-   
-    sNode = root.find('yidian')
-    if( sNode.find('enable').text == 'Enable' ) :
-#        en_list.append('yidian')
-        return 'yidian'
     
-    sNode = root.find('tonghuashun')
-    if( sNode.find('enable').text == 'Enable' ) :
-#        en_list.append('tonghuashun')
-        return 'tonghuashun'
-
-    sNode = root.find('dazhihui')
-    if( sNode.find('enable').text == 'Enable' ) :
-#        en_list.append('dazhihui')
-        return 'dazhihui'
-        
-        
-    sNode = root.find('xinlang')
-    if( sNode.find('enable').text == 'Enable' ) :
-#        en_list.append('xinlang')
-        return 'xinlang'
-#    return en_list
     
+if __name__ == "__main__":
+    create_stock_smt_cfg()

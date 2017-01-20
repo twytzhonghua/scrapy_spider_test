@@ -15,7 +15,7 @@ class ThsgudongSpider(scrapy.Spider):
 		#'http://stockpage.10jqka.com.cn/300371/holder/'
 	]
 
-	with open('C:/scrapy/crawls_urls.txt', 'r') as f:
+	with open('C:/scrapy/ths_urls.txt', 'r') as f:
 		for line in f.readlines():
 			start_urls.append(line.strip())
 		
@@ -68,6 +68,9 @@ class ThsgudongSpider(scrapy.Spider):
 				str = str_temp1[-1]
 		return str
 	
+
+	
+	
 	#流通股东数据
 	def checkLTGD(self, response):
 		sel = scrapy.selector.Selector(response)
@@ -76,6 +79,10 @@ class ThsgudongSpider(scrapy.Spider):
 		# print(date_time)
 		all_info = []
 		date_length = len(date_time)
+		if date_time:
+			ret = stockSql.query_lt_gudong_info_exist(self.stock_num, date_time[0])
+			print('query stock(%s) date(%s) ret %s' % (self.stock_num, date_time[0], ret))
+		
 		
 		cur_seq = 0
 		one_jidu_info_divs = LTGD_body.xpath('.//table[@class="m_table m_hl ggintro"]')

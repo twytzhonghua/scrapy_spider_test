@@ -140,7 +140,7 @@ def generateDzhUrls():
 				urls.append('http://webf10.gw.com.cn/SH/B10/SH' + key + '_B10.html')
 			
 	#print(urls)
-	with open('C:/scrapy/crawls_urls.txt', 'wb') as f:
+	with open('C:/scrapy/dzh_urls.txt', 'wb') as f:
 		for url in urls:
 			f.write(url.encode('utf-8'))
 			f.write('\n'.encode('utf-8'))
@@ -153,7 +153,7 @@ def generateThsUrls():
 		urls.append('http://stockpage.10jqka.com.cn/' + key+ '/holder/')
 
 	#print(urls)
-	with open('C:/scrapy/crawls_urls.txt', 'wb') as f:
+	with open('C:/scrapy/ths_urls.txt', 'wb') as f:
 		for url in urls:
 			f.write(url.encode('utf-8'))
 			f.write('\n'.encode('utf-8'))
@@ -168,7 +168,7 @@ def generateXlUrls():
 		urls.append('http://vip.stock.finance.sina.com.cn/corp/go.php/vCI_CirculateStockHolder/stockid/' + key+ '.phtml#2010-09-30')
 
 	#print(urls)
-	with open('C:/scrapy/crawls_urls.txt', 'wb') as f:
+	with open('C:/scrapy/xl_urls.txt', 'wb') as f:
 		for url in urls:
 			f.write(url.encode('utf-8'))
 			f.write('\n'.encode('utf-8'))			

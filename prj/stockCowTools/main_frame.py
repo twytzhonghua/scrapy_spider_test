@@ -55,16 +55,31 @@ from scrapy.logformatter import *
 from scrapy import *
 
 import stockSMT.paraInit as stparaInit
+import stockSMT.parseCfg as stparseCfg
+
 
 from stockCowTools.spiders.ThsGuDong2 import ThsgudongSpider
 from stockCowTools.spiders.DzhGuDong import DzhgudongSpider
 from stockCowTools.spiders.XinlangGuDong import XlgudongSpider
 
+
+
+
 def LtGDSpiderStart():
     process = CrawlerProcess()
-    # process.crawl(DzhgudongSpider)
-    # process.crawl(ThsgudongSpider)
-    process.crawl(XlgudongSpider)
+    cfg_name = stparseCfg.get_stock_smt_cfg_en_name()
+    print('LtGDSpiderStart cfg en name = ', cfg_name)
+    if cfg_name == 'dazhihui' :
+        print('start DzhgudongSpider')
+        process.crawl(DzhgudongSpider)
+    
+    if cfg_name == 'tonghuashun' :
+        print('start ThsgudongSpider')
+        process.crawl(ThsgudongSpider)
+    
+    if cfg_name == 'xinlang' :
+        print('start XlgudongSpider')
+        process.crawl(XlgudongSpider)
     process.start()
 
 class SmartToolMainFrame( wx.Frame ):
@@ -165,5 +180,7 @@ class SmartToolMainFrame( wx.Frame ):
     
     
 if __name__ == "__main__":
-    frame = SmartToolMainFrame(None)
+#    frame = SmartToolMainFrame(None)
+    LtGDSpiderStart()
+    
 

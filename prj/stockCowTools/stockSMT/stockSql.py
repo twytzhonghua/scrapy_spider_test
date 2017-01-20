@@ -70,7 +70,7 @@ def query_lt_gudong_name(name):
     db.select_db('ltgudongdb')
     cur = db.cursor()
     cur.execute("SELECT * FROM LTgudonginfo WHERE gudong_name='%s' " % t)
-    #db.commit()  
+    db.commit()  
     
     all_ret = cur.fetchall()
     
@@ -78,4 +78,19 @@ def query_lt_gudong_name(name):
     cur.close()
     db.close()
     return all_ret
+
+def query_lt_gudong_info_exist(stock_num, date):
+    db = MySQLdb.connect(host='127.0.0.1',user='root',passwd='123',port=3306, charset="utf8")
+    db.select_db('ltgudongdb')
+    query_cmd = 'SELECT * FROM LTgudonginfo WHERE stock_number = %s and date=%s' % (stock_num, date)
+    cur = db.cursor()
+    cur.execute(query_cmd)
+    db.commit()
+    ret =  cur.fetchall()
+    if ret:
+        print(ret)
+    cur.close()
+    db.close()
+    return ret
+    
     
