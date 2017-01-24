@@ -81,7 +81,9 @@ class ThsgudongSpider(scrapy.Spider):
 		date_length = len(date_time)
 		if date_time:
 			ret = stockSql.query_lt_gudong_info_exist(self.stock_num, date_time[0])
-			print('query stock(%s) date(%s) ret %s' % (self.stock_num, date_time[0], ret))
+			# print('query stock(%s) date(%s) ret %s' % (self.stock_num, date_time[0], ret))
+			if ret:
+				return 0
 		
 		
 		cur_seq = 0
