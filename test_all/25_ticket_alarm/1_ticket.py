@@ -67,7 +67,7 @@ def cli():
     print(arguments)
 
 def test():
-    url = 'https://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date=2017-02-06&leftTicketDTO.from_station=SHH&leftTicketDTO.to_station=KNH&purpose_codes=ADULT'
+    url = 'https://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date=2017-02-07&leftTicketDTO.from_station=SHH&leftTicketDTO.to_station=KNH&purpose_codes=ADULT'
     r = requests.get(url, verify=False)
     rows = r.json()['data']
 #    print(rows)
@@ -90,7 +90,7 @@ def test():
         
 #    print(all_ret)
     
-    Mheaders = u'列车  出发地 目的地 发车 到达 时间 一等座 二等座 无座 '.split()
+    Mheaders = u'列车  出发地   目的地 发车 到达 时间 一等座 二等座 无座 '.split()
     pt = PrettyTable()
     # 设置每一列的标题
     pt._set_field_names(Mheaders)
