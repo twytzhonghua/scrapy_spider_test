@@ -6,7 +6,7 @@ import os
 
 import stockSMT.stockSql as stockSql
 # from stockSMT.dataHtmlParse import *
-
+import stockSMT.globalPars as globalPars
 class ThsgudongSpider(scrapy.Spider):
 	name = "ths"
 	allowed_domains = ['10jqka.com.cn']
@@ -15,7 +15,7 @@ class ThsgudongSpider(scrapy.Spider):
 		#'http://stockpage.10jqka.com.cn/300371/holder/'
 	]
 
-	with open('C:/scrapy/ths_urls.txt', 'r') as f:
+	with open(globalPars.getToolBaseWorkDirectory() + 'ths_urls.txt', 'r') as f:
 		for line in f.readlines():
 			start_urls.append(line.strip())
 		

@@ -1,1 +1,1 @@
-__all__=["paraInit", "update_stock", "stockSql", "dataHtmlParse"]  
+__all__=["paraInit", "update_stock", "stockSql", "dataHtmlParse", "globalPars"]

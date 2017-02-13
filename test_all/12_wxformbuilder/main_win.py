@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import wx
 import basewin
 # 首先，咱们从刚刚源文件中将主窗体继承下来.就是修改过name属性的主窗体咯。

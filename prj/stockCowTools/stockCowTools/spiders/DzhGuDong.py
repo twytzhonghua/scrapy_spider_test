@@ -6,6 +6,7 @@ import urllib.request
 from stockSMT.stockSql import *
 # from stockSMT.dataHtmlParse import *
 from stockSMT.update_stock import * 
+import stockSMT.globalPars as globalPars
 
 class DzhgudongSpider(scrapy.Spider):
 	name = "dzh"
@@ -14,7 +15,7 @@ class DzhgudongSpider(scrapy.Spider):
 		# 'http://webf10.gw.com.cn/SH/B10/SH600767_B10.html#'
 	]
 
-	with open('C:/scrapy/dzh_urls.txt', 'r') as f:
+	with open(globalPars.getToolBaseWorkDirectory() + 'dzh_urls.txt', 'r') as f:
 		for line in f.readlines():
 			start_urls.append(line.strip())
 	

@@ -26,7 +26,7 @@ def test(pt, date, from_station, to_station):
 
     r = requests.get(url, verify=False)
     rows = r.json()['data']
-#    print(rows)
+
     all_ret = []
     for row in rows:
         info = row['queryLeftNewDTO']

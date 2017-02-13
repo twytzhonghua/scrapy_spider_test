@@ -5,7 +5,7 @@ import os, sys
 import xml.etree.ElementTree as ET 
 
 import xml.dom.minidom as Dom  
-
+import stockSMT.globalPars as globalPars
 
 def create_yidian_cfg(doc):
     cfg_node = doc.createElement("yidian")
@@ -65,7 +65,7 @@ def create_stock_smt_cfg():
     root_node.appendChild(dzhNode) 
     root_node.appendChild(xinlangNode) 
     
-    with open("C:/scrapy/stockSmtCfg.xml", "w")  as f:
+    with open(globalPars.getToolBaseWorkDirectory() + "stockSmtCfg.xml", "w")  as f:
         str = doc.toprettyxml(indent = "\t", newl = "\n", encoding = "utf-8")
         f.write(bytes.decode(str))
 
@@ -80,7 +80,7 @@ def get_stock_smt_cfg_en_name():
     else:
        create_stock_smt_cfg()
 
-    tree = ET.parse("c:/scrapy/stockSmtCfg.xml")     #打开xml文档   
+    tree = ET.parse(globalPars.getToolBaseWorkDirectory() + "stockSmtCfg.xml")     #打开xml文档
     root = tree.getroot()         #获得root节点  '
    
     sNode = root.find('yidian')

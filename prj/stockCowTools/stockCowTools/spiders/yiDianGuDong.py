@@ -5,7 +5,7 @@ import sys
 #import dataHtmlParse
 from stockSMT.stockSql import *
 from stockSMT.dataHtmlParse import *
-
+import stockSMT.globalPars as globalPars
 
 class YidiangudongSpider(scrapy.Spider):
 	name = "yiDianGuDong"
@@ -14,7 +14,7 @@ class YidiangudongSpider(scrapy.Spider):
 	#'http://www.yidiancangwei.com/gudong/sdlt_300111_2015_06_30.html'
 	]
 
-	with open('C:/scrapy/crawls_urls.txt', 'r') as f:
+	with open(globalPars.getToolBaseWorkDirectory() + 'crawls_urls.txt', 'r') as f:
 		for line in f.readlines():
 			start_urls.append(line.strip())
 					

@@ -5,6 +5,7 @@ import sys
 import os
 import stockSMT.stockSql as stockSql
 import stockSMT.update_stock as update_stock
+import stockSMT.globalPars as globalPars
 
 class XlgudongSpider(scrapy.Spider):
 	name = "xl"
@@ -17,7 +18,7 @@ class XlgudongSpider(scrapy.Spider):
 	self_dict = update_stock.generate_stock_dic()
 	print("dic len = ", len(self_dict))
 	
-	with open('C:/scrapy/xl_urls.txt', 'r') as f:
+	with open(globalPars.getToolBaseWorkDirectory() + 'xl_urls.txt', 'r') as f:
 		for line in f.readlines():
 			start_urls.append(line.strip())
 			
