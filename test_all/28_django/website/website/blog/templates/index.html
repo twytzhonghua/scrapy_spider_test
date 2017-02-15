@@ -9,9 +9,18 @@
 	<li>age :{{user.age}}</li>
 	<li>sex :{{user.sex}}</li>
 	<li>say :{{user.say}}</li>
-	<li>book :{{book_list.0}}</li>
-	<li>book :{{book_list.1}}</li>
-	<li>book :{{book_list.2}}</li>
-	<li>book :{{book_list.3}}</li>
+	
+		{% if user.age < 18 %}
+			<li>未成年</li>
+		{% else %}
+			<li>成年</li>
+		{% endif %}
+		
+		{% for book in book_list %}
+			<li>book ---:{{book}}</li>
+			<li>forloop.counter ---:{{forloop.counter}}</li>
+			<li>forloop.revcounter ---:{{forloop.revcounter}}</li>
+		{% endfor %}
+
 </body>
 </html>

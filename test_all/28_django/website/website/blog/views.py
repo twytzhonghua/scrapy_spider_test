@@ -17,7 +17,7 @@ def index(request):
 	t = loader.get_template('index.html')
 	user1 = {"name" : "tom", "age" : 23, "sex" : "male"}
 	
-	person = Person("jack", 25, 'woman')
+	person = Person("jack", 16, 'woman')
 	
 	book_list = ['python', 'ruby', 'java', 'c']
 	c = Context({"title": "Django", "user" : person, "book_list" : book_list})
