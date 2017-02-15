@@ -2,9 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-<title>网页标题</title>
+<title>{{title}}</title>
 </head>
 <body>
-	<h1>Hello Django </h1>
+	<h1>Hello {{user.name}}! </h1>
+	<li>age :{{user.age}}</li>
+	<li>sex :{{user.sex}}</li>
+	<li>say :{{user.say}}</li>
+	<li>book :{{book_list.0}}</li>
+	<li>book :{{book_list.1}}</li>
+	<li>book :{{book_list.2}}</li>
+	<li>book :{{book_list.3}}</li>
 </body>
 </html>
