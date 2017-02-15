@@ -23,9 +23,6 @@ def index(request):
 	
 	book_list = ['python', 'ruby', 'java', 'c']
 	today = datetime.date.today()
-	# book_list2 = []
-	# for book in book_list:
-		# book_list2.append(book.upper())
 	
 	c = Context({"title": "Django", "user" : person,
 		"book_list" : book_list, "today" : today})
@@ -33,8 +30,26 @@ def index(request):
 	
 def time(request):
 	today = datetime.date.today()
+	# http://127.0.0.1:8000/blog/time/?id=123
 	id = request.GET.get("id")
+	name = request.GET.get("name")
 	t = loader.get_template("time.html")
-	c = Context({"title": "Django", "today" : today})
+	c = Context({"title": "Django", "today" : today, "id" : id, "name" : name})
 	return HttpResponse(t.render(c))
+	
+def foo(request, p1, p2):
+	today = datetime.date.today()
+	# http://127.0.0.1:8000/blog/time/?id=123
+	t = loader.get_template("time.html")
+	c = Context({"title": "Django", "today" : today, "id" : p1, "name" : p2})
+	return HttpResponse(t.render(c))
+
+def bar(request, id , name):
+	today = datetime.date.today()
+	# http://127.0.0.1:8000/blog/time/?id=123
+	# id = request.GET.get("id")
+	name = request.GET.get("name")
+	t = loader.get_template("time.html")
+	c = Context({"title": "Django", "today" : today, "id" : id, "name" : name})
+	return HttpResponse(t.render(c))	
 	
