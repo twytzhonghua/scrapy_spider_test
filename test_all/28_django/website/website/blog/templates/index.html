@@ -17,10 +17,14 @@
 		{% endif %}
 		
 		{% for book in book_list %}
-			<li>book ---:{{book}}</li>
-			<li>forloop.counter ---:{{forloop.counter}}</li>
-			<li>forloop.revcounter ---:{{forloop.revcounter}}</li>
+			<li>book ---:{{book | upper | lower | capfirst}}</li>
 		{% endfor %}
 
+		
+		<li>today is :{{today | date:"Y-m-d"}}</li>
+		
+		{% load percent %}
+		
+		<li>today is :{{today | date:"Y-m-d" | percent}}</li>
 </body>
 </html>

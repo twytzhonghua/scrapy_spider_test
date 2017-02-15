@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader, Context
+import datetime
+
 # Create your views here.
 
 class Person(object):
@@ -20,5 +22,11 @@ def index(request):
 	person = Person("jack", 16, 'woman')
 	
 	book_list = ['python', 'ruby', 'java', 'c']
-	c = Context({"title": "Django", "user" : person, "book_list" : book_list})
+	today = datetime.date.today()
+	# book_list2 = []
+	# for book in book_list:
+		# book_list2.append(book.upper())
+	
+	c = Context({"title": "Django", "user" : person,
+		"book_list" : book_list, "today" : today})
 	return HttpResponse(t.render(c))
