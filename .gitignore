@@ -11,7 +11,7 @@ __pycache__/
 *.json
 *.xml
 *.csv
-*.html
+#*.html
 *_list
 *.xls
 # Distribution / packaging
