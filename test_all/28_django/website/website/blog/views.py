@@ -30,3 +30,11 @@ def index(request):
 	c = Context({"title": "Django", "user" : person,
 		"book_list" : book_list, "today" : today})
 	return HttpResponse(t.render(c))
+	
+def time(request):
+	today = datetime.date.today()
+	id = request.GET.get("id")
+	t = loader.get_template("time.html")
+	c = Context({"title": "Django", "today" : today})
+	return HttpResponse(t.render(c))
+	
